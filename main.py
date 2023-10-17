@@ -17,8 +17,6 @@ def text_to_audio(wav2vec2_model='facebook/wav2vec2-base-960h', voice_preset='v2
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model = model.to(device)
 
-    text = 'Хочу всю жизнь тебя любить,О грусти навсегда забыть, Ведь счастье — только лишь с тобой,Любви не нужно мне иной, Хочу обнять тебя скорей, Ведь в мире нет тебя нежней, И больше нет прекрасных слов, Чтоб выразить мою любовь.'
-
     inputs = processor(text, return_tensors="pt", padding=True, truncation=True).to(device)
     with torch.no_grad():
         logits = model(**inputs).logits
